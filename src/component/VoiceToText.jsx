@@ -126,28 +126,7 @@ export default function VoiceToText() {
     setConfidence(null);
   };
 
-  const handleCopy = async () => {
-    const text = (finalTranscript + (interimTranscript ? " " + interimTranscript : "")).trim();
-    if (!text) return;
-    try {
-      await navigator.clipboard.writeText(text);
-      // small feedback (toast could be added)
-    } catch (e) {
-      console.error("Copy failed", e);
-    }
-  };
 
-  const handleDownload = () => {
-    const text = (finalTranscript + (interimTranscript ? " " + interimTranscript : "")).trim();
-    if (!text) return;
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "transcript.txt";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 p-6">
